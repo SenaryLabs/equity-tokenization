@@ -1,45 +1,43 @@
 # Fusion Finance: Tokenized Equity Concept
 
-Fusion Finance is a protocol that tokenizes equities using blockchain as a messaging system for trade instructions, with settlement occurring on-chain. It bridges traditional and blockchain finance, offering a scalable, compliant solution for equity tokenization.
+Fusion Finance utilizes blockchain as a messaging layer for instructions. Actual trade execution and settlement occur off-chain via traditional brokers, with on-chain tokens representing verified off-chain ownership. It bridges traditional and blockchain finance, offering a scalable and compliant solution for equity tokenization.
 
 **Key Benefits:** Tapping into equities deep liquidity, ensures  and leverages smart contract automation for equity trading and ownership management.
 
 ## Technical Notes
 
-**Functionality:**
+**Functionality**
 
 * Clients initiate orders direct smart contract calls, with access controls restricting token creation to authorized parties.
 * Instruction tokens trigger custodian actions, while security tokens represents ownership updates.
 
 **Order Execution**
 
-**Buying:**
+**Buying**
 
-1.  Client creates an order instruction and sends it to the broker-dealer.
-2.  Broker-dealer executes ther buy order the asset off-chain and upon sucessful trade confirmation the protocol mints a security token representing the client's ownership.
+Client submits a buy order instruction, routed via blockchain to the broker-dealer. The broker-dealer executes the buy order off-chain. Upon trade confirmation, the protocol mints security tokens representing ownership.
 
-**Selling:**
 
-1.  Client issues an instruction token for selling, sent to the to broker-dealer.
-2.  Broker-deal executes the sell order of the asset off-chain and the protocol burns the equivelent of the shares in the security token.
+**Selling**
 
-**Transferring:**
+Client submits a sell order instruction, routed to the broker-dealer. The broker-dealer executes the sell order off-chain. Subsequently, the protocol burns security tokens equivalent to the sold shares.
+
+**Transferring**
 
 1.  Clients transfer security tokens peer-to-peer.
 2.  Custodian updates off-chain ownership records accordingly.
 
 **Broker-Dealer Integration**
 
-Chainlink Functions, powered by Decentralized Oracle Networks (DONs), receive instructions from the Order Manager and extract key order details; such as the asset symbol, quantity, and price. These functions then make HTTP requests to the Alpaca API, which executes the trades on the exchange.
+Chainlink Function, powered by Decentralized Oracle Networks (DONs), receive instructions from the Order Manager and extract order details; such as the asset symbol, quantity, and price. It then makes HTTP request to the Alpaca API, which executes the trades on the exchange.
 
-This process is synchronous and somewhat atomic: the `fulfillRequest` callback ensures the order is successfully filled before moving forward with minting.
+This process involves asynchronous calls via Chainlink Functions, ensuring trades are executed successfully before triggering on-chain minting. The `fulfillRequest` callback confirms successful trade execution before token operations proceed.
 
 **Benefits of Chainlink Functions:**
 
    - Trust-minimized and tamper-proof: Offers a secure and reliable setup for trade execution.
 
    - On-chain traceability: Provides transparency by recording function requests and responses.
-
 
 **Synchronization Mechanisms**
 
@@ -54,9 +52,9 @@ The `OrderManager.sol` is a Chainlink Consumer which serves as the central point
 
 The process begins when a user submits a buy/sell shares for a listed stock (e.g. NVDA). The request includes quantity and tokenId representing ticker symbol of the asset being traded. The `OrderManager` has the routes the order details via Chainlink Consumer function. The Chainlink Function then sends instructions to the broker-dealer's API with order payload. The broker executing the trade, and the subsequent updates to the user's tokenized equity holdings, which would be managed by the Fusion Equity protocol.
 
-The `TokenizedAsset.sol` contract is responsible for representing equity ownership on the blockchain within the Fusion Finance protocol. Utilizing the ERC-1155 multi-token standard, it allows for the creation and management of various tokenized assets, each representing a specific equity. After a successful buy order is executed by the broker-dealer, the tokenization process is typically triggered by a trusted Custodian. This involves first registering the specific equity (if not already done) using the `addAsset` function, which assigns a unique token ID and stores relevant asset details. Subsequently, the Custodian calls the `mint` function, crediting the buyer's address with the corresponding number of ERC-1155 tokens that represent their newly acquired equity.
+The `TokenizedAsset.sol` contract is responsible for representing equity ownership, it implements the ERC-1155 multi-token standard which supports the creation and management of various of various tokenized assets. Each equity is assigned a unique ERC-1155 token ID upon asset registration via addAsset. 
 
-When a user sells their tokenized equity, the Custodian initiates the burning of these tokens using the `burn` function, reflecting the off-chain sale. This controlled minting and burning process, managed by the Custodian, ensures that the on-chain representation of equity ownership aligns with the real-world trading activity. The ERC-1155 standard provides an efficient way to manage multiple different equity tokens within a single contract, streamlining the tokenization and ownership tracking aspects of the Fusion Equity protocol.
+The first step in the tokenization process is initiated by trusted Custodian, which involves registering the specific equity (if not already done) using the `addAsset` function, which assigns a unique token ID and stores relevant asset details.
 
 ## Getting Started
 

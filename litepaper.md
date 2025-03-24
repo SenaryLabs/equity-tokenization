@@ -43,7 +43,7 @@ The protocol's architecture is divided into three layers, as derived from the dr
 | **Layer**                | **Description**                                                                 |
 |--------------------------|---------------------------------------------------------------------------------|
 | Client Interface Layer   | Accepts client buy/sell orders through traditional methods (APIs, web applications) and blockchain-native methods (smart contract calls). |
-| Blockchain Messaging Layer | Utilizes public blockchains (e.g., Ethereum, Solana) as a tamper-proof messaging system to relay instructions to participating entities. |
+| Blockchain Messaging Layer | Utilizes public blockchains (e.g., Ethereum, Cardano) as a tamper-proof messaging system to relay instructions to participating entities. |
 | Traditional Settlement Layer | Leverages existing exchanges and custodians for final settlement, ensuring compatibility with public market infrastructure. |
 
 The workflow, as detailed in the draft, operates as follows:
