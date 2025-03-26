@@ -1,8 +1,8 @@
 # Fusion Finance: Tokenized Equity Concept
 
-Fusion Finance utilizes blockchain as a messaging layer for instructions. Actual trade execution and settlement occur off-chain via traditional brokers, with on-chain tokens representing verified off-chain ownership. It bridges traditional and blockchain finance, offering a scalable and compliant solution for equity tokenization.
+Fusion Finance utilizes blockchain as a messaging layer for instructions. Actual trade execution and settlement occur off-chain via traditional brokers, with on-chain tokens representing verified off-chain ownership. It bridges traditional finance and blockchain, offering a scalable and compliant solution for equity tokenization.
 
-**Key Benefits:** Tapping into equities deep liquidity, ensures  and leverages smart contract automation for equity trading and ownership management.
+For further details on the concept behind the protocol and use cases, please refer to the [Litepaper](litepaper.md).
 
 ## Technical Notes
 
