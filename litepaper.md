@@ -2,7 +2,7 @@
   
 Fusion Finance is a protocol that tokenizes equities by using public blockchains to send trade and settlement instructions to traditional financial entities like broker-dealers and custodians. Unlike typical tokenization, it doesn’t create new digital assets but uses tokens to instruct actions, keeping assets traded on existing exchanges for deep liquidity.
 
-- Fusion Finance tokenizes securities using blockchain as a messaging system, not for settlement, to maintain liquidity and comply with regulations.  
+- Fusion Finance tokenizes securities using blockchain as a messaging system.  
 - It solves liquidity fragmentation and operational challenges by integrating with traditional exchanges.  
 - Use cases include prime brokerage, tokenized funds, DeFi integration, and cross-border settlements.  
 - Future beneficiaries include retail and institutional investors, custodians, DeFi developers, and regulators.
